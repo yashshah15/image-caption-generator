@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mini Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  
+	div.contain {
+	border: 1px solid black;
+	padding: 50px 75px 100px 125px;
+	background-color: red;
+	}
+	
+	div.contains {
+	border: 1px solid black;
+	padding: 50px 75px 100px 125px;
+	background-color: red;
+	}
+	
+	body {
+	padding: 100px 100px 100px 100px;
+	}
+	
+	
+  </style>
+</head>
+<body> 
+
+
+	<div class="contain">
+		
+		<p>General Images:</p>
+		<form action="/generate-caption" method = "POST" 
+         enctype = "multipart/form-data">
+		<input type="file" id="myFile" name="filename">
+		<input type="submit">
+		</form>
+		
+	</div>
+	
+	<p> </p>
+	
+	<div class="contains">
+	
+		<p>Deepfakes:</p>
+		<form action="/generate-caption" method = "POST" 
+         enctype = "multipart/form-data">
+		<input type="file" id="myFile" name="file">
+		<input type="submit">
+		</form>
+		
+	</div>
+	
+</body>
+</html>
