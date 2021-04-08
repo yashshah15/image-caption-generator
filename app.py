@@ -9,15 +9,16 @@ from keras.models import Model
 from keras.applications.inception_v3 import preprocess_input
 from keras.models import load_model
 import tensorflow as tf
-physical_devices = tf.config.experimental.list_physical_devices('GPU')
-assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
-config = tf.config.experimental.set_memory_growth(physical_devices[0], True)
-from pickle import dump, load
-from flask import Flask,jsonify,request,render_template
+# physical_devices = tf.config.experimental.list_physical_devices('GPU')
+# assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
+# config = tf.config.experimental.set_memory_growth(physical_devices[0], True)
+from flask import Flask,jsonify,request,render_template, redirect,url_for,send_from_directory
+#from gtts import gTTS
 import os
 
 app=Flask(__name__)
-app.config['UPLOAD_FOLDER']='images'
+
+app.config['UPLOAD_FOLDER']='static'
 
 trained_model=load_model("trained_model.h5")
 model = InceptionV3(weights='imagenet')
@@ -160,14 +161,22 @@ def home():
 def caption_img():
     im=request.files['file']
     im.save(os.path.join(app.config['UPLOAD_FOLDER'], im.filename))
-    test_image = image.load_img('images/'+im.filename)
-    encoded_image=encode('images/'+im.filename)
+    test_image = image.load_img('static/'+im.filename)
+    encoded_image=encode('static/'+im.filename)
     #encoded_image.reshape((1,2048))
     caption=greedySearch(encoded_image)
-    return caption
+    myobj = gTTS(text=caption, lang="en", slow=False)
+    myobj.save("static/welcome.mp3")
+    return redirect(url_for("res",capt=caption,filename=im.filename))
 
+@app.route("/result/<capt>/<filename>")
+def res(capt,filename):
+    return render_template("result.html",caption=capt,filename=filename)
 
+@app.route('/audio/<path:filename>')
+def download_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 if __name__== "__main__":
-    app.run(debug=True)
+    app.run()
