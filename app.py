@@ -8,7 +8,7 @@ from keras.applications.inception_v3 import InceptionV3
 from keras.models import Model
 from keras.applications.inception_v3 import preprocess_input
 from keras.models import load_model
-import tensorflow as tf
+#import tensorflow as tf
 # physical_devices = tf.config.experimental.list_physical_devices('GPU')
 # assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
 # config = tf.config.experimental.set_memory_growth(physical_devices[0], True)
@@ -179,4 +179,4 @@ def download_file(filename):
 
 
 if __name__== "__main__":
-    app.run()
+    app.run(port=os.environ.get("PORT",5000)
