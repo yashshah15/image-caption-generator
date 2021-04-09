@@ -8,10 +8,10 @@ from keras.applications.inception_v3 import InceptionV3
 from keras.models import Model
 from keras.applications.inception_v3 import preprocess_input
 from keras.models import load_model
-import tensorflow as tf
-physical_devices = tf.config.experimental.list_physical_devices('GPU')
-assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
-config = tf.config.experimental.set_memory_growth(physical_devices[0], True)
+# import tensorflow as tf
+# physical_devices = tf.config.experimental.list_physical_devices('GPU')
+# assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
+# config = tf.config.experimental.set_memory_growth(physical_devices[0], True)
 from flask import Flask,jsonify,request,render_template, redirect,url_for,send_from_directory
 #from gtts import gTTS
 import os
