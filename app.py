@@ -175,6 +175,10 @@ def res(capt,filename):
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/test')
+def test():
+    return("Hello")
+
 
 if __name__== "__main__":
-    app.run(port=os.environ.get("PORT",5000))
+    app.run(port=os.environ.get("PORT",5000),host="0.0.0.0")
