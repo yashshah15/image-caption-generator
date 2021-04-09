@@ -165,8 +165,6 @@ def caption_img():
     encoded_image=encode('static/'+im.filename)
     #encoded_image.reshape((1,2048))
     caption=greedySearch(encoded_image)
-    myobj = gTTS(text=caption, lang="en", slow=False)
-    myobj.save("static/welcome.mp3")
     return redirect(url_for("res",capt=caption,filename=im.filename))
 
 @app.route("/result/<capt>/<filename>")
@@ -179,4 +177,4 @@ def download_file(filename):
 
 
 if __name__== "__main__":
-    app.run(port=os.environ.get("PORT",5000)
+    app.run(port=os.environ.get("PORT",5000))

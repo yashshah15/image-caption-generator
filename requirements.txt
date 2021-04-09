@@ -1,5 +1,7 @@
-flask==1.1.2
-Pillow==8.1.0
-numpy==1.18.5
-keras==2.4.3
+flask
+Pillow
+numpy
+keras
+tensorflow
+uwsgi
 
