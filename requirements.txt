@@ -1,6 +1,8 @@
 flask
 Pillow
 numpy==1.18.5
+h5py==2.10.0
+scipy==1.4.1
 keras
 tensorboard==2.4.1
 tensorboard-plugin-wit==1.8.0
